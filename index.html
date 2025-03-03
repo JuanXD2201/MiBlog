@@ -65,24 +65,6 @@
             text-align: justify;
         }
 
-        .images-container {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .images-container img {
-            flex: 1;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid #0d47a1;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .images-container img:hover {
-            transform: scale(1.05);
         }
 
         .personal-info {
@@ -136,10 +118,44 @@ ELSE
     statement;
 END IF;
         </pre>
-        <div class="images-container">
-            <img src="img/Aplicacion 1.png" alt="If-Then-Else ejemplo 1">
-            <img src="img/Captura 2.JPG" alt="If-Then-Else ejemplo 2">
-        </div>
+<footer style="background-color: #002D62; color: #FFFFFF; padding: 20px;">
+    <h3>Ejemplos de Procedimientos - IF-THEN-ELSE</h3>
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Verifica si un tripulante es un supernova
+DELIMITER //
+CREATE PROCEDURE EsSupernova(IN tripulante_nombre VARCHAR(50))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    IF recompensa_actual >= 100000000 THEN
+        SELECT CONCAT(tripulante_nombre, ' es un Supernova!') AS Mensaje;
+    ELSE
+        SELECT CONCAT(tripulante_nombre, ' no es un Supernova.') AS Mensaje;
+    END IF;
+END //
+DELIMITER ;
+CALL EsSupernova('Zoro');
+    </pre>
+    
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Determina si un tripulante pertenece a los Yonkou
+DELIMITER //
+CREATE PROCEDURE EsYonkou(IN tripulante_nombre VARCHAR(50))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    IF recompensa_actual >= 4000000000 THEN
+        SELECT CONCAT(tripulante_nombre, ' es un Yonkou!') AS Mensaje;
+    ELSE
+        SELECT CONCAT(tripulante_nombre, ' no es un Yonkou.') AS Mensaje;
+    END IF;
+END //
+DELIMITER ;
+CALL EsYonkou('Shanks');
+    </pre>
+    </footer>
     </div>
 
     <div class="section">
@@ -152,10 +168,42 @@ REPEAT
 UNTIL condition
 END REPEAT;
         </pre>
-        <div class="images-container">
-            <img src="img/Captura 3" alt="Repeat ejemplo 1">
-            <img src="img/Captura 4" alt="Repeat ejemplo 2">
-        </div>
+<footer style="background-color: #002D62; color: #FFFFFF; padding: 20px;">
+<h3>Ejemplos de Procedimientos - REPEAT</h3>
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Aumenta la recompensa de un tripulante hasta cierto límite
+DELIMITER //
+CREATE PROCEDURE SubirRecompensa(IN tripulante_nombre VARCHAR(50), IN cantidad DECIMAL(15,2))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    REPEAT
+        SET recompensa_actual = recompensa_actual + cantidad;
+        UPDATE Tripulantes SET recompensa = recompensa_actual WHERE nombre = tripulante_nombre;
+    UNTIL recompensa_actual >= 500000000 END REPEAT;
+END //
+DELIMITER ;
+CALL SubirRecompensa('Usopp', 50000000);
+    </pre>
+    
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Reduce la recompensa gradualmente hasta la mitad
+DELIMITER //
+CREATE PROCEDURE ReducirRecompensa(IN tripulante_nombre VARCHAR(50))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    REPEAT
+        SET recompensa_actual = recompensa_actual * 0.9;
+        UPDATE Tripulantes SET recompensa = recompensa_actual WHERE nombre = tripulante_nombre;
+    UNTIL recompensa_actual <= 250000000 END REPEAT;
+END //
+DELIMITER ;
+CALL ReducirRecompensa('Sanji');
+    </pre>
+    </footer>
     </div>
 
     <div class="section">
@@ -170,10 +218,51 @@ LOOP
     END IF;
 END LOOP;
         </pre>
-        <div class="images-container">
-            <img src="img/Captura 5" alt="Loop ejemplo 1">
-            <img src="img/Captura 6" alt="Loop ejemplo 2">
-        </div>
+<footer style="background-color: #002D62; color: #FFFFFF; padding: 20px;">
+    <h3>Ejemplos de Procedimientos - LOOP</h3>
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Aumenta la recompensa de un tripulante en un bucle hasta alcanzar cierto límite
+DELIMITER //
+CREATE PROCEDURE IncrementarRecompensa(IN tripulante_nombre VARCHAR(50), IN incremento DECIMAL(15,2), IN limite DECIMAL(15,2))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    mi_loop: LOOP
+        SET recompensa_actual = recompensa_actual + incremento;
+        UPDATE Tripulantes SET recompensa = recompensa_actual WHERE nombre = tripulante_nombre;
+        IF recompensa_actual >= limite THEN
+            LEAVE mi_loop;
+        END IF;
+    END LOOP;
+END //
+DELIMITER ;
+CALL IncrementarRecompensa('Luffy', 50000000, 1500000000);
+    </pre>
+    
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Contar cuántos tripulantes tienen una recompensa mayor a cierto valor
+DELIMITER //
+CREATE PROCEDURE ContarTripulantes(IN limite DECIMAL(15,2))
+BEGIN
+    DECLARE contador INT DEFAULT 0;
+    DECLARE total INT;
+    
+    SELECT COUNT(*) INTO total FROM Tripulantes WHERE recompensa > limite;
+    
+    mi_loop: LOOP
+        IF contador >= total THEN
+            LEAVE mi_loop;
+        END IF;
+        SET contador = contador + 1;
+    END LOOP;
+    
+    SELECT CONCAT('Número de tripulantes con recompensa mayor a ', limite, ': ', contador) AS Resultado;
+END //
+DELIMITER ;
+CALL ContarTripulantes(500000000);
+    </pre>
+    </footer>
     </div>
 
     <div class="section">
@@ -185,10 +274,45 @@ WHILE condition DO
     statement;
 END WHILE;
         </pre>
-        <div class="images-container">
-            <img src="img/Captura 7" alt="While ejemplo 1">
-            <img src="img/Captura 8" alt="While ejemplo 2">
-        </div>
+<footer style="background-color: #002D62; color: #FFFFFF; padding: 20px;">
+<h3>Ejemplos de Procedimientos - WHILE</h3>
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Reducir la recompensa de un tripulante en un porcentaje hasta un mínimo
+DELIMITER //
+CREATE PROCEDURE ReducirRecompensa(IN tripulante_nombre VARCHAR(50), IN porcentaje DECIMAL(5,2), IN minimo DECIMAL(15,2))
+BEGIN
+    DECLARE recompensa_actual DECIMAL(15,2);
+    SELECT recompensa INTO recompensa_actual FROM Tripulantes WHERE nombre = tripulante_nombre;
+    
+    WHILE recompensa_actual > minimo DO
+        SET recompensa_actual = recompensa_actual * (1 - porcentaje / 100);
+        UPDATE Tripulantes SET recompensa = recompensa_actual WHERE nombre = tripulante_nombre;
+    END WHILE;
+END //
+DELIMITER ;
+CALL ReducirRecompensa('Kid', 10, 100000000);
+    </pre>
+    
+    <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px; background-color: black; color: white; padding: 10px; text-align: left;">
+-- Contar cuántos tripulantes tienen una fruta del diablo
+DELIMITER //
+CREATE PROCEDURE ContarFrutas()
+BEGIN
+    DECLARE contador INT DEFAULT 0;
+    DECLARE total INT;
+    
+    SELECT COUNT(*) INTO total FROM TripulantesConFruta;
+    
+    WHILE contador < total DO
+        SET contador = contador + 1;
+    END WHILE;
+    
+    SELECT CONCAT('Número de tripulantes con fruta del diablo: ', contador) AS Resultado;
+END //
+DELIMITER ;
+CALL ContarFrutas();
+    </pre>
+</footer>
     </div>
 
     <div class="personal-info">
