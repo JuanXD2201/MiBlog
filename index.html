@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog sobre SQL y Ciclos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #c5fbff, #2196f3);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #1565c0;
+            color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        .section {
+            background: #1976d2;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+        }
+
+        .section h2 {
+            color: #bbdefb;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .images-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .images-container img {
+            flex: 1;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #0d47a1;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .images-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .personal-info {
+            background: #1565c0;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .personal-info h3 {
+            color: #bbdefb;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 10px;
+        }
+
+        .personal-info p {
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #fff;
+            background: #0d47a1;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SQL y sus Ciclos</h1>
+        <p>Explorando las estructuras de control de flujo en SQL.</p>
+    </header>
+
+    <div class="section">
+        <h2>If-Then-Else</h2>
+        <p>La estructura If-Then-Else en SQL permite ejecutar diferentes bloques de código dependiendo de si una condición es verdadera o falsa. Se utiliza comúnmente en procedimientos almacenados y en consultas condicionales.</p>
+        <p>Ejemplo en SQL:</p>
+        <pre>
+IF condition THEN
+    statement;
+ELSE
+    statement;
+END IF;
+        </pre>
+        <div class="images-container">
+            <img src="https://via.placeholder.com/400x200" alt="If-Then-Else ejemplo 1">
+            <img src="https://via.placeholder.com/400x200" alt="If-Then-Else ejemplo 2">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Repeat</h2>
+        <p>El ciclo Repeat se usa en SQL para repetir un bloque de instrucciones hasta que una condición específica se cumpla. Es útil cuando se desconoce el número exacto de iteraciones necesarias.</p>
+        <p>Ejemplo en SQL:</p>
+        <pre>
+REPEAT
+    statement;
+UNTIL condition
+END REPEAT;
+        </pre>
+        <div class="images-container">
+            <img src="https://via.placeholder.com/400x200" alt="Repeat ejemplo 1">
+            <img src="https://via.placeholder.com/400x200" alt="Repeat ejemplo 2">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Loop</h2>
+        <p>El ciclo Loop en SQL ejecuta repetidamente un bloque de código hasta que se alcance una condición específica. Es una estructura sencilla pero poderosa para crear iteraciones personalizadas.</p>
+        <p>Ejemplo en SQL:</p>
+        <pre>
+LOOP
+    statement;
+    IF condition THEN
+        LEAVE loop_label;
+    END IF;
+END LOOP;
+        </pre>
+        <div class="images-container">
+            <img src="https://via.placeholder.com/400x200" alt="Loop ejemplo 1">
+            <img src="https://via.placeholder.com/400x200" alt="Loop ejemplo 2">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>While</h2>
+        <p>El ciclo While en SQL ejecuta un bloque de código mientras una condición sea verdadera. Es útil para recorrer registros o repetir tareas controladas por una condición.</p>
+        <p>Ejemplo en SQL:</p>
+        <pre>
+WHILE condition DO
+    statement;
+END WHILE;
+        </pre>
+        <div class="images-container">
+            <img src="https://via.placeholder.com/400x200" alt="While ejemplo 1">
+            <img src="https://via.placeholder.com/400x200" alt="While ejemplo 2">
+        </div>
+    </div>
+
+    <div class="personal-info">
+        <h3>Datos del estudiante</h3>
+        <p><strong>Nombre:</strong> Juan Esteban Olaya Muñoz</p>
+        <p><strong>Carrera:</strong> Tecnologia en desarrollo de software</p>
+        <p><strong>Semestre:</strong> Tercer semestre</p>
+        <p><strong>Materia:</strong> Programacion en bases de datos</p>
+    </div>
+
+    <footer style="background-color: #002D62; color: #FFFFFF; padding: 20px;">
+        <h3>Script de Base de Datos - One Piece SQL</h3>
+        <div style="background-color: #000000; color: #ffffff; padding: 15px; text-align: left; border-radius: 5px;">
+        <pre style="white-space: pre-wrap; word-wrap: break-word; font-size: 12px;">
+    
+    CREATE DATABASE OnePieceDB;
+    USE OnePieceDB;
+    
+    -- Tabla de Tripulantes
+    CREATE TABLE Tripulantes (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        apodo VARCHAR(50),
+        edad INT,
+        rol VARCHAR(50),
+        recompensa DECIMAL(15,2)
+    );
+    
+    -- Tabla de Bandas Piratas
+    CREATE TABLE BandasPiratas (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        capitan_id INT,
+        barco VARCHAR(50),
+        territorio VARCHAR(50),
+        FOREIGN KEY (capitan_id) REFERENCES Tripulantes(id)
+    );
+    
+    -- Tabla de Islas
+    CREATE TABLE Islas (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        region VARCHAR(50),
+        es_loguetown BOOLEAN
+    );
+    
+    -- Tabla de Frutas del Diablo
+    CREATE TABLE FrutasDiablo (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        tipo ENUM('Paramecia', 'Zoan', 'Logia') NOT NULL,
+        habilidad VARCHAR(100)
+    );
+    
+    -- Tabla de Tripulantes_Frutas
+    CREATE TABLE Tripulantes_Frutas (
+        tripulante_id INT,
+        fruta_id INT,
+        PRIMARY KEY (tripulante_id, fruta_id),
+        FOREIGN KEY (tripulante_id) REFERENCES Tripulantes(id),
+        FOREIGN KEY (fruta_id) REFERENCES FrutasDiablo(id)
+    );
+    
+    -- Inserción de datos para Tripulantes
+    INSERT INTO Tripulantes (nombre, apodo, edad, rol, recompensa) VALUES
+    ('Monkey D. Luffy', 'Sombrero de Paja', 19, 'Capitán', 3000000000.00),
+    ('Roronoa Zoro', 'Cazador de Piratas', 21, 'Espadachín', 1100000000.00),
+    ('Nami', 'Gata Ladrona', 20, 'Navegante', 366000000.00),
+    ('Sanji', 'Pierna Negra', 21, 'Cocinero', 1032000000.00),
+    ('Tony Tony Chopper', 'Amante del Algodón de Azúcar', 17, 'Médico', 1000.00),
+    ('Nico Robin', 'Niña Demonio', 30, 'Arqueóloga', 930000000.00),
+    ('Franky', 'Cyborg', 36, 'Carpintero', 394000000.00),
+    ('Brook', 'Soul King', 90, 'Músico', 383000000.00),
+    ('Jinbe', 'Caballero del Mar', 46, 'Timonel', 1100000000.00),
+    ('Shanks', 'Pelirrojo', 39, 'Capitán', 4000000000.00),
+    ('Buggy', 'El Payaso Estrella', 35, 'Capitán', 3150000000.00),
+    ('Portgas D. Ace', 'Puño de Fuego', 20, 'Comandante', 550000000.00),
+    ('Edward Newgate', 'Barbablanca', 72, 'Capitán', 5000000000.00),
+    ('Kaido', 'La Bestia', 59, 'Capitán', 4611100000.00),
+    ('Charlotte Linlin', 'Big Mom', 68, 'Capitana', 4388000000.00),
+    ('Trafalgar D. Water Law', 'Cirujano de la Muerte', 26, 'Capitán', 3000000000.00),
+    ('Eustass Kid', 'Capitán', 23, 'Capitán', 3150000000.00),
+    ('Koby', 'Héroe de la Marina', 18, 'Marine', 100000.00),
+    ('Smoker', 'Cazador Blanco', 35, 'Vicealmirante', 300000000.00),
+    ('Sabo', 'Jefe de Estado Mayor', 22, 'Revolucionario', 602000000.00);
+    
+    -- Inserción de datos para Bandas Piratas
+    INSERT INTO BandasPiratas (nombre, capitan_id, barco, territorio) VALUES
+    ('Sombrero de Paja', 1, 'Thousand Sunny', 'Nuevo Mundo'),
+    ('Piratas del Corazón', 16, 'Polar Tang', 'North Blue'),
+    ('Piratas de Kid', 17, 'Victoria Punk', 'South Blue'),
+    ('Piratas de Barbablanca', 13, 'Moby Dick', 'Nuevo Mundo'),
+    ('Piratas de Shanks', 10, 'Red Force', 'West Blue');
+    
+    -- Inserción de datos para Islas
+    INSERT INTO Islas (nombre, region, es_loguetown) VALUES
+    ('Dressrosa', 'Nuevo Mundo', false),
+    ('Punk Hazard', 'Nuevo Mundo', false),
+    ('Loguetown', 'East Blue', true),
+    ('Wano', 'Nuevo Mundo', false),
+    ('Sabaody', 'Grand Line', false);
+    
+    -- Inserción de datos para Frutas del Diablo
+    INSERT INTO FrutasDiablo (nombre, tipo, habilidad) VALUES
+    ('Gomu Gomu no Mi', 'Paramecia', 'Convertirse en goma'),
+    ('Hito Hito no Mi', 'Zoan', 'Convertirse en humano'),
+    ('Mera Mera no Mi', 'Logia', 'Controlar fuego'),
+    ('Moku Moku no Mi', 'Logia', 'Controlar humo'),
+    ('Ope Ope no Mi', 'Paramecia', 'Crear una "sala" quirúrgica');
+    
+    -- Inserción de datos para Tripulantes_Frutas
+    INSERT INTO Tripulantes_Frutas (tripulante_id, fruta_id) VALUES
+    (1, 1),
+    (5, 2),
+    (12, 3),
+    (16, 5),
+    (19, 4);
+
+        </pre>
+    </footer>
+    
+</body>
+</html>
